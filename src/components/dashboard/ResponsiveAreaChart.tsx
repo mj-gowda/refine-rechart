@@ -7,6 +7,9 @@ import {
     YAxis,
     Tooltip,
     Area,
+    Line,
+    LineChart,
+    Legend,
 } from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
@@ -26,8 +29,8 @@ export const ResponsiveAreaChart = ({
     colors,
 }: TResponsiveAreaChartProps) => {
     return (
-        <ResponsiveContainer height={400}>
-            <AreaChart
+        <ResponsiveContainer height={280}>
+            <LineChart
                 data={data}
                 height={400}
                 margin={{
@@ -37,25 +40,30 @@ export const ResponsiveAreaChart = ({
                     bottom: 0,
                 }}
             >
-                <CartesianGrid strokeDasharray="0 0 0" />
+                <CartesianGrid vertical={false} opacity={0.3} />
+
                 <XAxis
+                    axisLine={false}
+                    tickLine={false}
                     dataKey="date"
                     tickCount={data?.length ?? 0}
                     tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
+                        stroke: "grey",
+                        strokeWidth: 0.1,
+                        fontSize: "13px",
                     }}
                 />
                 <YAxis
-                    tickCount={13}
+                    axisLine={false}
+                    tickLine={false}
+                    tickCount={6}
                     tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
+                        stroke: "grey",
+                        strokeWidth: 0.1,
+                        fontSize: "13px",
                     }}
                     interval="preserveStartEnd"
-                    domain={[0, "dataMax + 10"]}
+                    domain={["dataMin -5", "dataMax + 5"]}
                 />
                 <Tooltip
                     content={<ChartTooltip kpi={kpi} colors={colors} />}
@@ -65,18 +73,24 @@ export const ResponsiveAreaChart = ({
                         borderRadius: "10px",
                     }}
                 />
-                <Area
+                <Legend
+                    height={20}
+                    wrapperStyle={{
+                        margin: "0 0 10px 0",
+                    }}
+                />
+                <Line
+
                     type="monotone"
                     dataKey="value"
                     stroke={colors?.stroke}
                     strokeWidth={3}
-                    fill={colors?.fill}
                     dot={{
                         stroke: colors?.stroke,
                         strokeWidth: 3,
                     }}
                 />
-            </AreaChart>
+            </LineChart>
         </ResponsiveContainer>
     );
 };
