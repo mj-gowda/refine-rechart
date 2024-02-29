@@ -29,13 +29,13 @@ export const ResponsiveAreaChart = ({
     colors,
 }: TResponsiveAreaChartProps) => {
     return (
-        <ResponsiveContainer height={280}>
+        <ResponsiveContainer height={220}>
             <LineChart
                 data={data}
                 height={400}
                 margin={{
                     top: 10,
-                    right: 30,
+                    right: 20,
                     left: 0,
                     bottom: 0,
                 }}

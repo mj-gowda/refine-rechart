@@ -1,52 +1,41 @@
+import { GetListResponse } from "@refinedev/core";
 import React from "react";
+import { IChartDatum } from "../../interfaces";
 
 type TKpiCardProps = {
     title: string;
     data: any;
-    icon: JSX.Element;
-    colors: {
-        stroke: string;
-        fill: string;
-    };
     formatTotal?: (value: number | string) => typeof value;
 };
 
 export const KpiCard = ({
     title,
     data,
-    icon,
-    colors,
     formatTotal = (value) => value,
 }: TKpiCardProps) => {
     const total = data?.data?.total;
     const trend = data?.data?.trend;
     const calc = Math.round((trend / total) * 100);
-    const percent = total > trend ? `+ ${calc}%` : `- ${calc}%`;
+    const percent = total > trend ? `▴ ${calc}%` : `▾ ${calc}%`;
     const textColor = total > trend ? "seagreen" : "crimson";
 
     return (
         <div
-            className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
-            style={{ borderColor: colors?.stroke }}
+            className="stat flex-1 rounded-lg"
         >
-            {icon && <div
-                className="stat-figure text-secondary"
-                style={{ color: colors?.fill }}
-            >
-                {icon}
-            </div>}
-            <div className="stat-title text-l">{title}</div>
-            <div className="stat-value" style={{ color: colors?.stroke }}>
-                {formatTotal(total ?? "...")}
-            </div>
-            <div className="stat-desc my-2">
-                <span
-                    className="mx-1 text-l font-bold"
-                    style={{ color: textColor }}
-                >
-                    {percent}
+            <div className="stat-title text-zinc-700 underline underline-offset-2 decoration-dashed decoration-gray-400 text-sm font-medium">{title}</div>
+            <div>
+                <span className="stat-value text-zinc-800 text-lg font-semibold">
+                    {formatTotal(total ?? "...")}
                 </span>
-                since last week
+                <span className="stat-desc my-1 align-text-top">
+                    <span
+                        className="mx-2 text-xs font-bold"
+                        style={{ color: textColor }}
+                    >
+                        {percent}
+                    </span>
+                </span>
             </div>
         </div>
     );

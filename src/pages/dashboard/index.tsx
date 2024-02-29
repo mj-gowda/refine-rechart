@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { CrudFilter, useList } from "@refinedev/core";
+import { CrudFilter, GetListResponse, useList } from "@refinedev/core";
 import dayjs from "dayjs";
 import Stats from "../../components/dashboard/Stats";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
@@ -20,6 +20,7 @@ const filters: CrudFilter[] = [
         value: dayjs().startOf("day"),
     },
 ];
+
 
 export const Dashboard: React.FC = () => {
     const { data: dailyRevenue } = useList<IChartDatum>({
@@ -58,6 +59,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 1,
             label: "Daily Revenue",
+            data: dailyRevenue,
             content: (
                 <ResponsiveAreaChart
                     kpi="Daily revenue"
@@ -72,6 +74,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 2,
             label: "Daily Orders",
+            data: dailyOrders,
             content: (
                 <ResponsiveBarChart
                     kpi="Daily orders"
@@ -86,6 +89,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 3,
             label: "New Customers",
+            data: newCustomers,
             content: (
                 <ResponsiveAreaChart
                     kpi="New customers"
@@ -101,11 +105,6 @@ export const Dashboard: React.FC = () => {
 
     return (
         <>
-            <Stats
-                dailyRevenue={dailyRevenue}
-                dailyOrders={dailyOrders}
-                newCustomers={newCustomers}
-            />
             <TabView tabs={tabs} />
             <RecentSales />
         </>
