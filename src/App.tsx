@@ -13,7 +13,7 @@ import {
     Route,
     Routes,
 } from "react-router-dom";
-import "./App.css";
+import "./global.css";
 import { Layout } from "./components/layout";
 import {
     ProductCreate,

@@ -101,6 +101,36 @@ export const Dashboard: React.FC = () => {
                 />
             ),
         },
+        {
+            id: 4,
+            label: "New Customers",
+            data: newCustomers,
+            content: (
+                <ResponsiveAreaChart
+                    kpi="New customers"
+                    data={memoizedNewCustomersData}
+                    colors={{
+                        stroke: "rgb(76, 175, 80)",
+                        fill: "rgba(54, 162, 235, 0.2)",
+                    }}
+                />
+            ),
+        },
+        {
+            id: 5,
+            label: "New Customers",
+            data: newCustomers,
+            content: (
+                <ResponsiveAreaChart
+                    kpi="New customers"
+                    data={memoizedNewCustomersData}
+                    colors={{
+                        stroke: "rgb(76, 175, 80)",
+                        fill: "rgba(54, 162, 235, 0.2)",
+                    }}
+                />
+            ),
+        }
     ];
 
     return (

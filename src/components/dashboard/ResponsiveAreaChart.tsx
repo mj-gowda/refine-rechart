@@ -29,7 +29,7 @@ export const ResponsiveAreaChart = ({
     colors,
 }: TResponsiveAreaChartProps) => {
     return (
-        <ResponsiveContainer height={220}>
+        <ResponsiveContainer height={200}>
             <LineChart
                 data={data}
                 height={400}
@@ -56,7 +56,7 @@ export const ResponsiveAreaChart = ({
                 <YAxis
                     axisLine={false}
                     tickLine={false}
-                    tickCount={6}
+                    tickCount={4}
                     tick={{
                         stroke: "grey",
                         strokeWidth: 0.1,

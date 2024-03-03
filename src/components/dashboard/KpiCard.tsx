@@ -20,17 +20,17 @@ export const KpiCard = ({
     const textColor = total > trend ? "seagreen" : "crimson";
 
     return (
-        <div
-            className="stat flex-1 rounded-lg"
-        >
-            <div className="stat-title text-zinc-700 underline underline-offset-2 decoration-dashed decoration-gray-400 text-sm font-medium">{title}</div>
-            <div>
-                <span className="stat-value text-zinc-800 text-lg font-semibold">
+        <div className="flex-1 w-full rounded-lg">
+            <div className="text-sm text-zinc-700 underline underline-offset-2 decoration-dashed decoration-gray-400 font-medium">
+                {title}
+            </div>
+            <div className="pt-1">
+                <span className="text-zinc-700 text-lg font-semibold">
                     {formatTotal(total ?? "...")}
                 </span>
-                <span className="stat-desc my-1 align-text-top">
+                <span className="mx-2 align-top">
                     <span
-                        className="mx-2 text-xs font-bold"
+                        className="text-xs font-bold"
                         style={{ color: textColor }}
                     >
                         {percent}
