@@ -10,7 +10,7 @@ export const Menu = () => {
                 {menuItems.map((item) => (
                     <li
                         key={item?.key}
-                        className="mx-0 flex justify-start items-center"
+                        className="mx-4 flex justify-start items-center"
                     >
                         <div className="text-gray-600">
                             <NavLink

@@ -22,33 +22,18 @@ const Stats = ({ dailyRevenue, dailyOrders, newCustomers }: TStats) => {
                     title="Weekly Revenue"
                     data={dailyRevenue}
                     formatTotal={(value: number | string) => `$ ${value}`}
-                    icon={<CurrencyDollarIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(54, 162, 235)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
                 />
             </div>
             <div className="w-full mx-auto md:flex-1">
                 <KpiCard
                     title="Weekly Orders"
                     data={dailyOrders}
-                    icon={<ShoppingCartIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(255, 159, 64)",
-                        fill: "rgba(255, 159, 64, 0.2)",
-                    }}
                 />
             </div>
             <div className="w-full mx-auto md:flex-1 md:ml-2">
                 <KpiCard
                     title="New Customers"
                     data={newCustomers}
-                    icon={<UserGroupIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(76, 175, 80)",
-                        fill: "rgba(76, 175, 80, 0.2)",
-                    }}
                 />
             </div>
         </div>

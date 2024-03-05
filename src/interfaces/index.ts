@@ -1,3 +1,4 @@
+
 export interface IOrder {
     id: number;
     user: IUser;
@@ -57,5 +58,6 @@ export interface ICategory {
 export type TTab = {
     id: number;
     label: string;
+    data: any;
     content: JSX.Element;
 };
