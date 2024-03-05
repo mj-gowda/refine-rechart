@@ -75,6 +75,7 @@ export const ResponsiveAreaChart = ({
                 />
                 <Legend
                     height={20}
+                    iconType="plainline"
                     wrapperStyle={{
                         margin: "0 0 10px 0",
                     }}
