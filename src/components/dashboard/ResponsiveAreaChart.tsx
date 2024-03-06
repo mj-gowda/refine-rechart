@@ -40,6 +40,22 @@ export const ResponsiveAreaChart = ({
                     bottom: 0,
                 }}
             >
+                <Line
+                    type="monotone"
+                    dataKey="revenue"
+                    dot={true}
+
+                    fillOpacity={1}
+                    fill="url(#colorRevenue)"
+                />
+                <Line
+                    type="monotone"
+                    dataKey="expenses"
+                    dot={true}
+
+                    fillOpacity={1}
+                    fill="url(#colorExpenses)"
+                />
                 <CartesianGrid vertical={false} opacity={0.3} />
 
                 <XAxis
