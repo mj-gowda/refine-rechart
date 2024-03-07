@@ -29,7 +29,7 @@ export const ResponsiveAreaChart = ({
     colors,
 }: TResponsiveAreaChartProps) => {
     return (
-        <ResponsiveContainer height={200}>
+        <ResponsiveContainer height={220}>
             <LineChart
                 data={data}
                 height={400}

@@ -59,6 +59,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 1,
             label: "Daily Revenue",
+            definition: "The combined revenue of all sales for the particular day.",
             data: dailyRevenue,
             content: (
                 <ResponsiveAreaChart
@@ -74,6 +75,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 2,
             label: "Daily Orders",
+            definition: "The combined revenue of all sales for the particular day.",
             data: dailyOrders,
             content: (
                 <ResponsiveBarChart
@@ -89,6 +91,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 3,
             label: "New Customers",
+            definition: "The combined revenue of all sales for the particular day.",
             data: newCustomers,
             content: (
                 <ResponsiveAreaChart
@@ -104,6 +107,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 4,
             label: "New Customers",
+            definition: "The combined revenue of all sales for the particular day.",
             data: newCustomers,
             content: (
                 <ResponsiveAreaChart
@@ -119,6 +123,7 @@ export const Dashboard: React.FC = () => {
         {
             id: 5,
             label: "New Customers",
+            definition: "The combined revenue of all sales for the particular day.",
             data: newCustomers,
             content: (
                 <ResponsiveAreaChart
