@@ -19,7 +19,7 @@ export const TabView = ({ tabs }: TTabViewProps) => {
     const [showPanel, setShowPanel] = useState(true);
 
     return (
-        <div className=" mr-auto ml-10 p-2 max-w-[900px] h-fit  bg-slate-50 border rounded-2xl drop-shadow-md">
+        <div className=" mr-auto ml-10 p-2 max-w-[900px] h-fit  bg-white border rounded-2xl drop-shadow-md">
             <div className="flex flex-row gap-2">
                 {tabs?.slice(0, 4).map((tab: TTab, index: number) => (
                     <TabItem

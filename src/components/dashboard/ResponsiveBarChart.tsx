@@ -8,7 +8,7 @@ import {
     Tooltip,
     Bar,
 } from "recharts";
-import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
+import { CustomTooltip } from "./CustomTooltip";
 import { IChartDatum } from "../../interfaces";
 
 type TResponsiveBarChartProps = {
@@ -58,7 +58,7 @@ export const ResponsiveBarChart = ({
                     }}
                 />
                 <Tooltip
-                    content={<ChartTooltip colors={colors} kpi={kpi} />}
+                    content={<CustomTooltip colors={colors} kpi={kpi} />}
                     wrapperStyle={{
                         backgroundColor: "rgba(0, 0, 0, 0.7)",
                         border: "0 solid #000",

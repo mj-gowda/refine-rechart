@@ -9,16 +9,12 @@ import {
     Tooltip,
     Legend,
 } from "recharts";
-import { ChartTooltip } from "./ChartTooltip";
-import { IChartDatum } from "../../interfaces";
-import { cn } from "@/lib/utils";
-import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
-import { CalendarIcon } from "lucide-react";
-import { format, getMonth } from "date-fns";
-import { Button } from "../shadcn/ui/button";
-import { Calendar } from "../shadcn/ui/calendar";
+import { CustomTooltip } from "./CustomTooltip";
 import { LegendLine } from "../icons/svg";
 import { Legendcalendar } from "./LegendCalendar";
+import { ContentType } from "recharts/types/component/Tooltip";
+
+
 type ChartData = {
     month: string;
     value: string;
@@ -43,6 +39,8 @@ const months = [
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ];
 
+const lineColors = ['rgba(111, 194, 243, 0.5)', 'rgba(72, 154, 210, 1.2)'];
+
 export const ResponsiveLineChart = ({
     kpi,
     data,
@@ -50,6 +48,9 @@ export const ResponsiveLineChart = ({
 }: TResponsiveLineChartProps) => {
     const [openDate, setOpenDate] = React.useState<Date | undefined>()
     const [closeDate, setCloseDate] = React.useState<Date | undefined>()
+
+
+
 
 
     // Group data by year
@@ -61,8 +62,6 @@ export const ResponsiveLineChart = ({
         d[year].push(entry);
         return d;
     }, {});
-
-    const lineColors = ['rgba(111, 194, 243, 0.5)', 'rgba(72, 154, 210, 1.2)'];
     const years = Object.keys(groupedData);
 
     const Customizedlegend = () => {
@@ -76,7 +75,7 @@ export const ResponsiveLineChart = ({
                     <span className="flex flex-row m-2 gap-3">
                         {years.map((year, index) => (
                             <span className="flex flex-row gap-1 text-sm items-center text-zinc-500">
-                                <LegendLine fill={lineColors[index]} className="w-6 h-6" />
+                                <LegendLine fill={lineColors[index]} className="w-6 h-6 pb-1" />
                                 {year}
                             </span>
                         ))}
@@ -86,6 +85,9 @@ export const ResponsiveLineChart = ({
         )
     }
 
+
+
+    // update range from user Input (closeDate) from calendar
     const range = closeDate?.getMonth() ? closeDate?.getMonth() + 1 : 12;
 
 
@@ -114,7 +116,7 @@ export const ResponsiveLineChart = ({
                 <YAxis
                     axisLine={false}
                     tickLine={false}
-                    tickCount={3}
+                    tickCount={4}
                     tick={{
                         stroke: "grey",
                         strokeWidth: 0.1,
@@ -123,14 +125,8 @@ export const ResponsiveLineChart = ({
                     interval="preserveStartEnd"
                     domain={["dataMin - (dataMin*5)", "dataMax + (dataMin*5)"]}
                 />
-                <Tooltip
-                    content={<ChartTooltip kpi={kpi} colors={colors} />}
-                    wrapperStyle={{
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
-                        border: "0 solid #000",
-                        borderRadius: "10px",
-                    }}
-                />
+
+                <Tooltip content={CustomTooltip} />
                 <Legend content={Customizedlegend} />
 
                 {years.map((year, index) => (

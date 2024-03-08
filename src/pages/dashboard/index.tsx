@@ -171,7 +171,7 @@ export const Dashboard: React.FC = () => {
     ];
 
     return (
-        <div className="h-screen">
+        <div className="h-screen bg-zinc-100">
             <TabView tabs={tabs} />
         </div>
     );
