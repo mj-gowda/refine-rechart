@@ -50,22 +50,22 @@ export const TabItem = ({ currentTab, tabs, isActive, clickHandler, chart }: TTa
                                     <button className="flex flex-row w-full m-0.5 justify-start group hover:cursor-default"
                                         onClick={() => changeMetric(index)}>
                                         <span>
-                                            <DropdownItemChartIcon width="10" height="10" />
+                                            <DropdownItemChartIcon width="14" height="14" viewBox="0 0 12 12" />
                                         </span>
                                         <span className="text-xs text-zinc-700 w-4/5 text-left ml-2">
                                             {tab?.label}
                                         </span>
                                         <HoverCard openDelay={0} closeDelay={0}>
-                                            <HoverCardTrigger asChild>
+                                            <HoverCardTrigger>
                                                 <span>
-                                                    <DropdownItemInfoIcon className="hidden group-hover:inline-flex" width="10" height="10" />
+                                                    <DropdownItemInfoIcon className="hidden group-hover:inline-flex" width="13" height="13" viewBox="0 0 12 12" />
                                                 </span>
                                             </HoverCardTrigger>
                                             <HoverCardPortal>
-                                                <HoverCardContent avoidCollisions side="right" sideOffset={30} className="w-80 overflow-visible bg-slate-50 shadow-lg rounded-lg p-2">
+                                                <HoverCardContent align="start" side="right" sideOffset={25} className="w-45 inline-block bg-slate-50 shadow-lg rounded-lg p-2">
                                                     <div className="flex justify-between space-x-4">
                                                         <div className="space-y-1">
-                                                            <h4 className="text-base font-semibold">{tab.label}</h4>
+                                                            <h4 className="text-sm font-semibold">{tab.label}</h4>
                                                             <p className="text-sm text-neutral-600">
                                                                 {tab.definition}
                                                             </p>

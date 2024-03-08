@@ -23,12 +23,12 @@ export const KpiCard = ({
         <div className="flex-auto w-full rounded-lg">
             <HoverCard openDelay={0} closeDelay={0}>
                 <HoverCardTrigger asChild>
-                    <div className="text-sm text-zinc-700 underline underline-offset-2 decoration-dashed decoration-gray-400 font-medium">
+                    <span className="text-sm text-zinc-700 underline underline-offset-4 decoration-dashed decoration-gray-400 hover:cursor-default font-medium">
                         {title}
-                    </div>
+                    </span>
                 </HoverCardTrigger>
                 <HoverCardPortal>
-                    <HoverCardContent sideOffset={10} side="bottom" className="ml-16 w-80 bg-slate-50 shadow-lg rounded-lg p-2">
+                    <HoverCardContent align="start" sideOffset={10} side="bottom" className="w-100 bg-slate-50 shadow-lg rounded-lg p-2">
                         <div className="flex justify-between space-x-4">
                             <div className="space-y-1">
                                 <h4 className="text-base font-semibold">{title}</h4>
