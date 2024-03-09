@@ -1,11 +1,24 @@
 import { HoverCard, HoverCardTrigger, HoverCardContent, HoverCardPortal } from "@radix-ui/react-hover-card";
+import { useDateStore } from "@/store/store";
+import { ChartData } from "@/interfaces";
 
 type TKpiCardProps = {
     title: string;
-    data: any;
+    data: ChartData[];
     definition: string;
     formatTotal?: (value: number | string) => typeof value;
 };
+
+
+interface GroupedData {
+    [year: number]: ChartData[]; // Adjust ChartData based on your actual data structure
+}
+
+const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+];
+const decimalMetrics = ["Return Rate", "Store Search Conversion"]
 
 export const KpiCard = ({
     title,
@@ -13,11 +26,44 @@ export const KpiCard = ({
     definition,
     formatTotal = (value) => value,
 }: TKpiCardProps) => {
-    const total = data?.data?.total;
-    const trend = data?.data?.trend;
-    const calc = Math.round((trend / total) * 100);
-    const percent = total > trend ? `▴ ${calc}%` : `▾ ${calc}%`;
-    const textColor = total > trend ? "seagreen" : "crimson";
+    const closeDate: Date = useDateStore((state) => state.dateRange)
+
+    // Group data by year
+    const groupedData: Record<number, ChartData[]> = data.reduce((d: GroupedData, entry) => {
+        const year: number = entry.year;
+        if (!d[year]) {
+            d[year] = [];
+        }
+        d[year].push(entry);
+        return d;
+    }, {});
+    const years = Object.keys(groupedData).map(Number);
+
+    const totals: Record<number, number> = {};
+    years.sort();
+    years.forEach((year, index) => {
+        const yearData = groupedData[year] || [];
+        const LastMonth = closeDate.getMonth() + 1;
+        const totalUpToCloseDate = yearData.reduce((acc, entry) => {
+            const entryMonth = months.indexOf(entry.month);
+            if (entryMonth < LastMonth) {
+                acc += Number(entry.value);
+            }
+            return acc;
+        }, 0);
+
+        if (decimalMetrics.includes(title)) {
+            totals[year] = Number(((totalUpToCloseDate / LastMonth).toFixed(3)))
+        } else {
+            totals[year] = totalUpToCloseDate;
+        }
+    });
+
+
+    const trend = Number((((totals[years[years.length - 1]] - totals[years[years.length - 2]]) / totals[years[years.length - 2]]) * 100).toFixed(1));
+    const percent = trend >= 0 ? `▴ ${trend}%` : `▾ ${trend}%`;
+    const textColor = trend >= 0 ? "seagreen" : "crimson";
+
 
     return (
         <div className="flex-auto w-full rounded-lg">
@@ -42,7 +88,7 @@ export const KpiCard = ({
             </HoverCard>
             <div className="pt-1">
                 <span className="text-zinc-700 text-lg font-semibold">
-                    {formatTotal(total ?? "...")}
+                    {decimalMetrics.includes(title) ? formatTotal(`${(totals[years[years.length - 1]] * 100).toFixed(2)}%`) : formatTotal(totals[years[years.length - 1]])}
                 </span>
                 <span className="mx-2 align-top">
                     <span
@@ -50,6 +96,7 @@ export const KpiCard = ({
                         style={{ color: textColor }}
                     >
                         {percent}
+
                     </span>
                 </span>
             </div>

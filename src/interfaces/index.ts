@@ -62,3 +62,9 @@ export type TTab = {
     data: any;
     content: JSX.Element;
 };
+
+export type ChartData = {
+    month: string;
+    value: string;
+    year: number;
+}

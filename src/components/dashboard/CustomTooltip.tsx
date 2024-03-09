@@ -12,7 +12,7 @@ export const CustomTooltip = ({ active, payload }: any) => {
                 <Card>
                     <CardContent className="h-fit p-1 text-xs whitespace-break-spaces">
                         <p className="flex flex-row gap-2">
-                            <LegendLine className="w-6 h-6 pb-2" fill={payload[0].color} />
+                            <LegendLine className="w-6 h-6 pb-2" fill={payload[1].color} />
                             <span>{`${payload[1].payload.month} ${payload[1].payload.year}     ${payload[1].value}`}</span>
                             <span className="inline-flex gap-1">
                                 {trend ? (<TrendLine className="w-3 h-3 mt-1" fill="darkgreen" />)
@@ -21,10 +21,9 @@ export const CustomTooltip = ({ active, payload }: any) => {
                             </span>
                         </p>
                         <p className="flex flex-row gap-2 ">
-                            <LegendLine className="w-6 h-6 pb-2" fill={payload[1].color} />
+                            <LegendLine className="w-6 h-6 pb-2" fill={payload[0].color} />
                             {`${payload[0].payload.month} ${payload[0].payload.year}     ${payload[0].value}`}
                         </p>
-
                     </CardContent>
                 </Card>
             </div >

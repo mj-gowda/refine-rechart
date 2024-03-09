@@ -11,15 +11,10 @@ import {
 } from "recharts";
 import { CustomTooltip } from "./CustomTooltip";
 import { LegendLine } from "../icons/svg";
-import { Legendcalendar } from "./LegendCalendar";
-import { ContentType } from "recharts/types/component/Tooltip";
+import { LegendCalendar } from "./LegendCalendar";
+import { useDateStore } from "@/store/store";
+import { ChartData } from "@/interfaces";
 
-
-type ChartData = {
-    month: string;
-    value: string;
-    year: number;
-}
 
 interface GroupedData {
     [year: number]: ChartData[]; // Adjust ChartData based on your actual data structure
@@ -47,10 +42,8 @@ export const ResponsiveLineChart = ({
     colors,
 }: TResponsiveLineChartProps) => {
     const [openDate, setOpenDate] = React.useState<Date | undefined>()
-    const [closeDate, setCloseDate] = React.useState<Date | undefined>()
-
-
-
+    const closeDate: Date = useDateStore((state) => state.dateRange)
+    const setCloseDate = useDateStore((state) => state.updateDateRange)
 
 
     // Group data by year
@@ -68,10 +61,10 @@ export const ResponsiveLineChart = ({
         return (
             <div className="flex flex-row justify-around">
                 <div>
-                    <Legendcalendar years={years} date={openDate} setDate={setOpenDate} navigation={true} defaultMonth={0} />
-                    <Legendcalendar years={years} date={closeDate} setDate={setCloseDate} navigation={false} defaultMonth={11} />
+                    <LegendCalendar key={years[0]} years={years} date={openDate} setDate={setOpenDate} navigation={true} defaultMonth={0} />
+                    <LegendCalendar key={years[1]} years={years} date={closeDate} setDate={setCloseDate} navigation={false} defaultMonth={11} />
                 </div>
-                <div className=" ">
+                <div>
                     <span className="flex flex-row m-2 gap-3">
                         {years.map((year, index) => (
                             <span className="flex flex-row gap-1 text-sm items-center text-zinc-500">
@@ -92,7 +85,7 @@ export const ResponsiveLineChart = ({
 
 
     return (
-        <ResponsiveContainer height={200}>
+        <ResponsiveContainer height={200} width="100%">
             <LineChart
                 data={data}
                 margin={{
@@ -148,3 +141,4 @@ export const ResponsiveLineChart = ({
         </ResponsiveContainer>
     );
 };
+

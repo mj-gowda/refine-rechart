@@ -7,7 +7,7 @@ import { Calendar } from "../shadcn/ui/calendar"
 
 
 
-export const Legendcalendar = ({ ...props }) => {
+export const LegendCalendar = ({ ...props }) => {
     return (
         <>
             <Popover>

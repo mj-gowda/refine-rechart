@@ -45,15 +45,13 @@ export const TabView = ({ tabs }: TTabViewProps) => {
                 </Collapsible>
             </div>
             {showPanel &&
-                <div className="w-[850px] pr-3">
+                <div className="w-full pr-3">
                     {tabs?.map((tab: TTab, index: number) => (
                         <TabPanel key={tab?.id} isActive={index === activeTab}>
                             {tabs[chart]?.content}
                         </TabPanel>
                     ))}
                 </div>}
-
-
         </div>
     );
 };
