@@ -65,7 +65,7 @@ export const ResponsiveLineChart = ({
                     <LegendCalendar key={years[1]} years={years} date={closeDate} setDate={setCloseDate} navigation={false} defaultMonth={11} />
                 </div>
                 <div>
-                    <span className="flex flex-row m-2 gap-3">
+                    <span className="flex flex-col sm:flex-row m-2 gap-3">
                         {years.map((year, index) => (
                             <span className="flex flex-row gap-1 text-sm items-center text-zinc-500">
                                 <LegendLine fill={lineColors[index]} className="w-6 h-6 pb-1" />
@@ -85,7 +85,7 @@ export const ResponsiveLineChart = ({
 
 
     return (
-        <ResponsiveContainer height={200} width="100%">
+        <ResponsiveContainer height={220} width="100%">
             <LineChart
                 data={data}
                 margin={{

@@ -16,7 +16,7 @@ export const LegendCalendar = ({ ...props }) => {
                         variant={"outline"}
                         size="sm"
                         className={cn(
-                            "w-[140px] align-middle justify-start text-left font-normal",
+                            " max-w-[140px] align-middle justify-start text-left font-normal",
                             !props.date && "text-muted-foreground"
                         )}
                     >

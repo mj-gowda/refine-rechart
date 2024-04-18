@@ -66,7 +66,7 @@ export const KpiCard = ({
 
 
     return (
-        <div className="flex-auto w-full rounded-lg">
+        <div className="flex-shrink md:flex-auto w-full rounded-lg">
             <HoverCard openDelay={0} closeDelay={0}>
                 <HoverCardTrigger asChild>
                     <span className="text-sm text-zinc-700 underline underline-offset-4 decoration-dashed decoration-gray-400 hover:cursor-default font-medium">
@@ -87,7 +87,7 @@ export const KpiCard = ({
                 </HoverCardPortal>
             </HoverCard>
             <div className="pt-1">
-                <span className="text-zinc-700 text-lg font-semibold">
+                <span className="text-zinc-700 text-sm md:text-lg font-semibold">
                     {decimalMetrics.includes(title) ? formatTotal(`${(totals[years[years.length - 1]] * 100).toFixed(2)}%`) : formatTotal(totals[years[years.length - 1]])}
                 </span>
                 <span className="mx-2 align-top">
